@@ -8,10 +8,27 @@ Skyler A. is the Galactic Overlord of this code.
 
 # The required imports
 import ActorProperties as ap
+import Calculations as calc
+import Constants as cons
+
 
 # This class initialises the universe
 def startup():
-    pass
 
+    actors = []
+    sol = ap.Actor("Sol", 1e30, 1)
+    terra = ap.Actor("Terra", 1e30, 1)
+    sol.pos.x = 1
 
+    actors.append(sol)
+    actors.append(terra)
 
+    calc.gravity(actors)
+
+    for actor in actors:
+        actor.update_space(1)
+
+    print(sol)
+    print(terra)
+
+startup()

@@ -6,6 +6,9 @@ class Vector:
         self.y = y
         self.z = z
 
+    def __str__(self):
+        return "x: " + str(self.x) + "\ty: " + str(self.y) + "\tz: " + str(self.z)
+
     #   Returns the quadrature sum
     def get_mag(self):
         return (self.x ** 2 + self.y ** 2 + self.z ** 2) ** (1 / 2)
@@ -21,6 +24,12 @@ class Vector:
         self.y += add_vec.y
         self.z += add_vec.z
 
+    # Adds a vector multiplied by a scalar
+    def add_mult(self, add_vec, scalar):
+        self.x += add_vec.x * scalar
+        self.y += add_vec.y * scalar
+        self.z += add_vec.z * scalar
+
 
 # An actor is a class that contains all the information required to model a celestial body
 #   That is, at least in terms of its orbit
@@ -29,7 +38,8 @@ class Vector:
 #     Gravitationally, it is a point mass
 #     Volume-wise, it is a perfect sphere
 class Actor:
-    def __init__(self, mass, radius):
+    def __init__(self, name, mass, radius):
+        self.name = name
         self.mass = mass
         self.radius = radius
 
@@ -37,11 +47,14 @@ class Actor:
         self.velo = Vector(0, 0, 0)
         self.accel = Vector(0, 0, 0)
 
+    def __str__(self):
+        return self.name + "\n\tMass:\t" + str(self.mass) + "\n\tRadius:\t" + str(self.radius) + "\n\tpos:\t" + str(self.pos) + "\n\tvelo:\t" + str(self.velo) + "\n\taccel:\t" + str(self.accel)
+
     #   Updates the actor's...
     #       Velocity, based on its acceleration
     #       Position, based on its velocity
     #       And it's acceleration back to zero
-    def update_space(self):
-        self.velo.add(self.accel)
-        self.pos.add(self.velo)
+    def update_space(self, time):
+        self.velo.add_mult(self.accel, time)
+        self.pos.add_mult(self.velo, time)
         self.accel = Vector(0, 0, 0)
