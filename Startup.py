@@ -10,15 +10,16 @@ Skyler A. is the Galactic Overlord of this code.
 import ActorProperties as ap
 import Calculations as calc
 import Constants as cons
+import Planets as pl
 
 
 # This class initialises the universe
 def startup():
 
     actors = []
-    sol = ap.Actor("Sol", 1e30, 1)
-    terra = ap.Actor("Terra", 1e30, 1)
-    sol.pos.x = 1
+    sol = pl.sol
+    terra = pl.terra
+    terra.pos.x = cons.AU
 
     actors.append(sol)
     actors.append(terra)
