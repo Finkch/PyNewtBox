@@ -5,9 +5,10 @@
   </component>
   <component name="ChangeListManager">
     <list default="true" id="b1aa9279-4ab8-4e2d-9ceb-5da06cbf0345" name="Changes" comment="">
-      <change afterPath="$PROJECT_DIR$/Planets.py" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/Utility.py" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/Constants.py" beforeDir="false" afterPath="$PROJECT_DIR$/Constants.py" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/ActorProperties.py" beforeDir="false" afterPath="$PROJECT_DIR$/ActorProperties.py" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/Calculations.py" beforeDir="false" afterPath="$PROJECT_DIR$/Calculations.py" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/Startup.py" beforeDir="false" afterPath="$PROJECT_DIR$/Startup.py" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
@@ -85,7 +86,7 @@
       <option name="SCRIPT_NAME" value="$PROJECT_DIR$/Startup.py" />
       <option name="PARAMETERS" value="" />
       <option name="SHOW_COMMAND_LINE" value="false" />
-      <option name="EMULATE_TERMINAL" value="false" />
+      <option name="EMULATE_TERMINAL" value="true" />
       <option name="MODULE_MODE" value="false" />
       <option name="REDIRECT_INPUT" value="false" />
       <option name="INPUT_FILE" value="" />
@@ -112,6 +113,11 @@
       <option name="INPUT_FILE" value="" />
       <method v="2" />
     </configuration>
+    <list>
+      <item itemvalue="Python.Calculations" />
+      <item itemvalue="Python.Startup" />
+      <item itemvalue="Python.Vector" />
+    </list>
     <recent_temporary>
       <list>
         <item itemvalue="Python.Startup" />

@@ -11,11 +11,38 @@ import ActorProperties as ap
 import Calculations as calc
 import Constants as cons
 import Planets as pl
+import time as tm
+import Utility as util
+
+
+#   Contains the primary simulation loop
+def exist(actors, time):
+
+    #   Defines whether the universe is or isn't
+    exists = True
+
+    #   Simulates
+    while exists:
+
+        #   Cleans a few things up after every step
+        tm.sleep(0.5)
+        util.cls()
+
+        #   Applies gravitational forces to each actor
+        calc.gravity(actors)
+
+        #   Moves an actor in space
+        for actor in actors:
+            actor.update_space(time)
+
+            #   Prints a summary for each actor
+            print(actor)
 
 
 # This class initialises the universe
 def startup():
 
+    #   Creates the list of actors and populates it
     actors = []
     sol = pl.sol
     terra = pl.terra
@@ -24,12 +51,14 @@ def startup():
     actors.append(sol)
     actors.append(terra)
 
-    calc.gravity(actors)
 
-    for actor in actors:
-        actor.update_space(1)
+    #   Defines the ratio of seconds to step
+    time = 1
 
-    print(sol)
-    print(terra)
+    #   Enters the simulation
+    exist(actors, time)
 
+
+#   In the beginning, there was nothing
+#   Then, God said "startup()"
 startup()

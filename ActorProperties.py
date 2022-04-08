@@ -1,5 +1,4 @@
-
-
+#   A vector contains magnitude and direction
 class Vector:
     def __init__(self, x, y, z):
         self.x = x
@@ -57,4 +56,7 @@ class Actor:
     def update_space(self, time):
         self.velo.add_mult(self.accel, time)
         self.pos.add_mult(self.velo, time)
+
+        #   If a debugger is implemented, here is where it would push vectors
+
         self.accel = Vector(0, 0, 0)
