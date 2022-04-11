@@ -53,7 +53,7 @@ class Actor:
         self.hollow_accel = Vector(0, 0, 0)
 
     def __str__(self):
-        return self.name + "\n\tMass:\t" + util.round_str(self.mass) + "\n\tRadius:\t" + util.round_str(self.radius) + "\n\tpos:\t" + str(self.pos) + "\n\tvelo:\t" + str(self.velo) + "\n\taccel:\t" + str(self.hollow_accel)
+        return self.name + "\n\tMass:\t" + util.round_str(self.mass) + "\tRadius:\t" + util.round_str(self.radius) + "\n\tpos:\t" + str(self.pos) + "\n\tvelo:\t" + str(self.velo) + "\n\taccel:\t" + str(self.hollow_accel)
 
     #   Updates the actor's...
     #       Velocity, based on its acceleration

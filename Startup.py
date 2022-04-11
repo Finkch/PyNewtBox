@@ -4,6 +4,8 @@ Skyler A. is the Galactic Overlord of this code.
     The goal of this code is to reasonably accurately simulate and display celestial bodies in their dance of
         gravitational forces.
     Mostly to look good rather than calculate anything meaningful.
+
+    As a note, all measurements and outputs are in SI units unless otherwise specified
 """
 
 # The required imports
@@ -13,6 +15,7 @@ import Constants as cons
 import Planets as pl
 import time as tm
 import Utility as util
+import Stopwatch
 
 
 #   Contains the primary simulation loop
@@ -22,18 +25,29 @@ def exist(actors, time):
     exists = True
     steps = 0
 
+    real_time = Stopwatch.Stopwatch(5)
+
+
     #   Simulates
     while exists:
+
+        #   Handles the stopwatches
+        real_time.push_time()
+
 
         #   Cleans a few things up after every step
         tm.sleep(0.5)
         util.cls()
 
+
         #   Applies gravitational forces to each actor
         calc.gravity(actors)
 
+
         #   A basic time tracker
-        print("Steps:", steps, "\tTime elapsed:", (steps * time), "s")
+        print("Steps:", steps, "\tTime per step:", time, "\tTime simulated:", (steps * time), "s\tSimulation rate:", util.round_str(time / real_time.peek_delta()) + "x")
+        print("Time taken on step:", util.round_str(real_time.peek_delta()), "s\tTotal elapsed time:", util.round_str(real_time.since_start()), "s")
+
 
         #   Moves an actor in space
         for actor in actors:
