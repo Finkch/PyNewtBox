@@ -20,6 +20,7 @@ def exist(actors, time):
 
     #   Defines whether the universe is or isn't
     exists = True
+    steps = 0
 
     #   Simulates
     while exists:
@@ -31,12 +32,17 @@ def exist(actors, time):
         #   Applies gravitational forces to each actor
         calc.gravity(actors)
 
+        #   A basic time tracker
+        print("Steps:", steps, "\tTime elapsed:", (steps * time), "s")
+
         #   Moves an actor in space
         for actor in actors:
             actor.update_space(time)
 
             #   Prints a summary for each actor
             print(actor)
+
+        steps += 1
 
 
 # This class initialises the universe
@@ -47,6 +53,10 @@ def startup():
     sol = pl.sol
     terra = pl.terra
     terra.pos.x = cons.AU
+
+    #   Gives the actors some velocity
+    terra.velo = ap.Vector(0, 1e4, 1e4)
+
 
     actors.append(sol)
     actors.append(terra)

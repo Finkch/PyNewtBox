@@ -1,4 +1,6 @@
 #   A vector contains magnitude and direction
+import Utility as util
+
 class Vector:
     def __init__(self, x, y, z):
         self.x = x
@@ -6,7 +8,7 @@ class Vector:
         self.z = z
 
     def __str__(self):
-        return "x: " + str(self.x) + "\ty: " + str(self.y) + "\tz: " + str(self.z)
+        return "x: " + util.round_str(self.x) + "\ty: " + util.round_str(self.y) + "\tz: " + util.round_str(self.z) + "\tTotal: " + util.round_str(self.get_mag())
 
     #   Returns the quadrature sum
     def get_mag(self):
@@ -46,8 +48,12 @@ class Actor:
         self.velo = Vector(0, 0, 0)
         self.accel = Vector(0, 0, 0)
 
+        #   This is a fake acceleration
+        #       Since accel is reset after every step, this fake one is used for prints
+        self.hollow_accel = Vector(0, 0, 0)
+
     def __str__(self):
-        return self.name + "\n\tMass:\t" + str(self.mass) + "\n\tRadius:\t" + str(self.radius) + "\n\tpos:\t" + str(self.pos) + "\n\tvelo:\t" + str(self.velo) + "\n\taccel:\t" + str(self.accel)
+        return self.name + "\n\tMass:\t" + util.round_str(self.mass) + "\n\tRadius:\t" + util.round_str(self.radius) + "\n\tpos:\t" + str(self.pos) + "\n\tvelo:\t" + str(self.velo) + "\n\taccel:\t" + str(self.hollow_accel)
 
     #   Updates the actor's...
     #       Velocity, based on its acceleration
@@ -59,4 +65,5 @@ class Actor:
 
         #   If a debugger is implemented, here is where it would push vectors
 
+        self.hollow_accel = self.accel
         self.accel = Vector(0, 0, 0)
