@@ -13,7 +13,6 @@ import ActorProperties as ap
 import Calculations as calc
 import Constants as cons
 import Planets as pl
-import time as tm
 import Utility as util
 import Deque
 
@@ -84,15 +83,18 @@ def startup():
     #   Creates the list of actors and populates it
     actors = []
     sol = pl.sol
+
     terra = pl.terra
     terra.pos.x = cons.AU
+    terra.velo.y = 30220
 
-    #   Gives the actors some velocity
-    terra.velo = ap.Vector(0, 30220, 0)
-
+    luna = pl.luna
+    luna.pos.x = cons.AU + cons.LU
+    luna.velo.y = 1.022e3 + terra.velo.y
 
     actors.append(sol)
     actors.append(terra)
+    #actors.append(luna)
 
 
     #   Defines the ratio of seconds to step
