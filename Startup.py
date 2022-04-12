@@ -15,7 +15,7 @@ import Constants as cons
 import Planets as pl
 import time as tm
 import Utility as util
-import Stopwatch
+import Deque
 
 
 #   Contains the primary simulation loop
@@ -25,7 +25,19 @@ def exist(actors, time):
     exists = True
     steps = 0
 
-    real_time = Stopwatch.Stopwatch(5)
+    real_time = Deque.Stopwatch(5)
+    frame_time = Deque.Stopwatch(5)
+    real_time.push_time()
+    frame_time.push_time()
+
+
+    #   The Debugger handles printing things to console
+    debugger = Deque.Debugger()
+    debugger.add_tags([
+        "actor",
+        "sim_time",
+        "real_time"
+    ])
 
 
     #   Simulates
@@ -33,29 +45,36 @@ def exist(actors, time):
 
         #   Handles the stopwatches
         real_time.push_time()
-
-
-        #   Cleans a few things up after every step
-        tm.sleep(0.5)
-        util.cls()
+        next_frame = frame_time.since() > 1 / 15
 
 
         #   Applies gravitational forces to each actor
         calc.gravity(actors)
 
-
-        #   A basic time tracker
-        print("Steps:", steps, "\tTime per step:", time, "\tTime simulated:", (steps * time), "s\tSimulation rate:", util.round_str(time / real_time.peek_delta()) + "x")
-        print("Time taken on step:", util.round_str(real_time.peek_delta()), "s\tTotal elapsed time:", util.round_str(real_time.since_start()), "s")
-
-
         #   Moves an actor in space
         for actor in actors:
             actor.update_space(time)
 
-            #   Prints a summary for each actor
-            print(actor)
+        #   When enough time has passed for the next frame to be drawn
+        #       Pushes relevant information to console & prints it
+        if next_frame:
+            util.cls()
 
+            #   Pushes everything to the debugger
+            for actor in actors:
+                debugger.push(actor, "actor", next_frame)
+            debugger.push("Time taken on step: " + util.round_str(real_time.peek_delta()) + " s\tTotal elapsed time: " + util.round_str(real_time.since_start()) + " s\tFramerate: " + "{:.2f}".format(1 / frame_time.since()) + " fps", "real_time", next_frame)
+            debugger.push("Steps: " + str(steps) + "\tTime simulated: " + util.seconds_to_clock(steps * time) + "\tTime per step: " + str(time) + " s\tSimulation rate:" + util.round_str(time / real_time.peek_delta()) + "x", "sim_time", next_frame)
+
+
+            #   Pops the debugger until it is empty
+            while not debugger.is_empty():
+                print(debugger.pop())
+
+            #   Updates the stopwatch in charge of framerate
+            frame_time.push_time()
+
+        #   Increments the step
         steps += 1
 
 
@@ -69,7 +88,7 @@ def startup():
     terra.pos.x = cons.AU
 
     #   Gives the actors some velocity
-    terra.velo = ap.Vector(0, 1e4, 1e4)
+    terra.velo = ap.Vector(0, 30220, 0)
 
 
     actors.append(sol)

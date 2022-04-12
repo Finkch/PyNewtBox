@@ -73,3 +73,30 @@ class Stopwatch(Deque):
 
     def since_start(self):
         return (time.time_ns() / 1e9) - self.note
+
+
+#   A Debugger holds prints statements that are print out
+#       As a developer view sort of thing
+#   Holds plenty of tags
+#       These tags determine what is and isn't accepted into the debugger
+class Debugger(Deque):
+    def __init__(self):
+        Deque.__init__(self, float("infinity"))
+        self.tags = []
+
+    #   Adds a tag to the tag list
+    def add_tag(self, tag):
+        if tag not in self.tags:
+            self.tags.append(tag)
+
+    def add_tags(self, tags):
+        for tag in tags:
+            self.add_tag(tag)
+
+    #   Pushes an item to the Debugger
+    #   Overrides Deque's push function
+    #   Will only push if the tag matches and the Debugger is open
+    def push(self, item, tag, open):
+        if open and tag in self.tags:
+            self.arr.append(item)
+

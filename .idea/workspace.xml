@@ -5,10 +5,10 @@
   </component>
   <component name="ChangeListManager">
     <list default="true" id="b1aa9279-4ab8-4e2d-9ceb-5da06cbf0345" name="Changes" comment="">
-      <change afterPath="$PROJECT_DIR$/Stopwatch.py" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/ActorProperties.py" beforeDir="false" afterPath="$PROJECT_DIR$/ActorProperties.py" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/Startup.py" beforeDir="false" afterPath="$PROJECT_DIR$/Startup.py" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/Stopwatch.py" beforeDir="false" afterPath="$PROJECT_DIR$/Deque.py" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/Utility.py" beforeDir="false" afterPath="$PROJECT_DIR$/Utility.py" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
@@ -91,6 +91,27 @@
       <option name="INPUT_FILE" value="" />
       <method v="2" />
     </configuration>
+    <configuration name="Deque" type="PythonConfigurationType" factoryName="Python" temporary="true" nameIsGenerated="true">
+      <module name="PyNewtBox" />
+      <option name="INTERPRETER_OPTIONS" value="" />
+      <option name="PARENT_ENVS" value="true" />
+      <envs>
+        <env name="PYTHONUNBUFFERED" value="1" />
+      </envs>
+      <option name="SDK_HOME" value="" />
+      <option name="WORKING_DIRECTORY" value="$PROJECT_DIR$" />
+      <option name="IS_MODULE_SDK" value="true" />
+      <option name="ADD_CONTENT_ROOTS" value="true" />
+      <option name="ADD_SOURCE_ROOTS" value="true" />
+      <option name="SCRIPT_NAME" value="$PROJECT_DIR$/Deque.py" />
+      <option name="PARAMETERS" value="" />
+      <option name="SHOW_COMMAND_LINE" value="false" />
+      <option name="EMULATE_TERMINAL" value="false" />
+      <option name="MODULE_MODE" value="false" />
+      <option name="REDIRECT_INPUT" value="false" />
+      <option name="INPUT_FILE" value="" />
+      <method v="2" />
+    </configuration>
     <configuration name="Startup" type="PythonConfigurationType" factoryName="Python" temporary="true" nameIsGenerated="true">
       <module name="PyNewtBox" />
       <option name="INTERPRETER_OPTIONS" value="" />
@@ -112,7 +133,7 @@
       <option name="INPUT_FILE" value="" />
       <method v="2" />
     </configuration>
-    <configuration name="Vector" type="PythonConfigurationType" factoryName="Python" temporary="true" nameIsGenerated="true">
+    <configuration name="Utility" type="PythonConfigurationType" factoryName="Python" temporary="true" nameIsGenerated="true">
       <module name="PyNewtBox" />
       <option name="INTERPRETER_OPTIONS" value="" />
       <option name="PARENT_ENVS" value="true" />
@@ -124,7 +145,7 @@
       <option name="IS_MODULE_SDK" value="true" />
       <option name="ADD_CONTENT_ROOTS" value="true" />
       <option name="ADD_SOURCE_ROOTS" value="true" />
-      <option name="SCRIPT_NAME" value="$PROJECT_DIR$/Vector.py" />
+      <option name="SCRIPT_NAME" value="$PROJECT_DIR$/Utility.py" />
       <option name="PARAMETERS" value="" />
       <option name="SHOW_COMMAND_LINE" value="false" />
       <option name="EMULATE_TERMINAL" value="false" />
@@ -136,15 +157,17 @@
     <list>
       <item itemvalue="Python.Calculations" />
       <item itemvalue="Python.Startup" />
-      <item itemvalue="Python.Vector" />
       <item itemvalue="Python.ActorProperties" />
+      <item itemvalue="Python.Utility" />
+      <item itemvalue="Python.Deque" />
     </list>
     <recent_temporary>
       <list>
         <item itemvalue="Python.Startup" />
+        <item itemvalue="Python.Utility" />
+        <item itemvalue="Python.Deque" />
         <item itemvalue="Python.ActorProperties" />
         <item itemvalue="Python.Calculations" />
-        <item itemvalue="Python.Vector" />
       </list>
     </recent_temporary>
   </component>
