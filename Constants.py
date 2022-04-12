@@ -8,7 +8,7 @@ solar_mass = 1.989e30   #   kg
 solar_radius = 696e6    #   m
 
 earth_mass = 5.9722e24  #   kg
-earth_radius = 636e3    #   m
+earth_radius = 6361e3    #   m
 
 lunar_mass = 7.342e22   #   kg
 lunar_radius = 1737.4e3 #   m
