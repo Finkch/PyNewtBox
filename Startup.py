@@ -9,12 +9,13 @@ Skyler A. is the Galactic Overlord of this code.
 """
 
 # The required imports
-import ActorProperties as ap
+#import ActorProperties as ap
 import Calculations as calc
 import Constants as cons
 import Planets as pl
 import Utility as util
 import Deque
+import States as st
 
 
 #   Contains the primary simulation loop
@@ -29,6 +30,8 @@ def exist(actors, time):
     real_time.push_time()
     frame_time.push_time()
 
+    #   Stores the worldlines
+    states = st.State()
 
     #   The Debugger handles printing things to console
     debugger = Deque.Debugger()
@@ -50,21 +53,25 @@ def exist(actors, time):
         #   Applies gravitational forces to each actor
         calc.gravity(actors)
 
-        #   Moves an actor in space
+        #   Moves an actor in space & adds the state
         for actor in actors:
             actor.update_space(time)
+            states.add(steps * time, actors)
+
 
         #   When enough time has passed for the next frame to be drawn
         #       Pushes relevant information to console & prints it
         if next_frame:
             util.cls()
 
+            #   Retrieves the current state
+            current_state = states.get(steps * time)
+
             #   Pushes everything to the debugger
-            for actor in actors:
+            for actor in current_state:
                 debugger.push(actor, "actor", next_frame)
             debugger.push("Time taken on step: " + util.round_str(real_time.peek_delta()) + " s\tTotal elapsed time: " + util.round_str(real_time.since_start()) + " s\tFramerate: " + "{:.2f}".format(1 / frame_time.since()) + " fps", "real_time", next_frame)
             debugger.push("Steps: " + str(steps) + "\tTime simulated: " + util.seconds_to_clock(steps * time) + "\tTime per step: " + str(time) + " s\tSimulation rate:" + util.round_str(time / real_time.peek_delta()) + "x", "sim_time", next_frame)
-
 
             #   Pops the debugger until it is empty
             while not debugger.is_empty():
