@@ -18,6 +18,17 @@ import Deque
 import States as st
 
 
+#   Does one step of simulation
+def simulate(actors, states, steps, time):
+    #   Applies gravitational forces to each actor
+    calc.gravity(actors)
+
+    #   Updates each actor based on their acceleration
+    for actor in actors:
+        actor.update_space(time)
+        states.add(steps * time, actors)
+
+
 #   Contains the primary simulation loop
 def exist(actors, time):
 
@@ -50,13 +61,8 @@ def exist(actors, time):
         next_frame = frame_time.since() > 1 / 15
 
 
-        #   Applies gravitational forces to each actor
-        calc.gravity(actors)
-
         #   Moves an actor in space & adds the state
-        for actor in actors:
-            actor.update_space(time)
-            states.add(steps * time, actors)
+        simulate(actors, states, steps, time)
 
 
         #   When enough time has passed for the next frame to be drawn
@@ -112,5 +118,5 @@ def startup():
 
 
 #   In the beginning, there was nothing
-#   Then, God said "startup()"
+#   Then, god said "startup()"
 startup()
