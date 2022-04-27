@@ -78,13 +78,15 @@ def exist(actors):
             util.cls()
 
             #   Retrieves the current state
-            current_state = states.get(sim_steps * time)
+            timestamp = round(real_time.since_start(), 1)
+
+            current_state = states.get(timestamp)
 
             #   Pushes everything to the debugger
             for actor in current_state:
                 debugger.push(actor, "actor", next_frame)
-            debugger.push("Time taken on step: " + util.round_str(real_time.peek_delta()) + " s\tTotal elapsed time: " + util.round_str(real_time.since_start()) + " s\tFramerate: " + "{:.2f}".format(1 / frame_time.since()) + " fps", "frame_time", next_frame)
-            debugger.push("Current step: " + str(sim_steps) + "\tCurrent time: " + util.seconds_to_clock(sim_steps * time) + " s\tStep delta: " + util.round_str(steps - sim_steps), "real_time", next_frame)
+            debugger.push("Time taken on step: " + util.round_str(real_time.peek_delta()) + " s\tTotal elapsed time: " + util.seconds_to_clock(real_time.since_start()) + " s\tFramerate: " + "{:.2f}".format(1 / frame_time.since()) + " fps", "frame_time", next_frame)
+            debugger.push("Current step: " + str(timestamp // time) + "\tCurrent time: " + util.seconds_to_clock(timestamp) + " s\tStep delta: " + util.round_str(steps - sim_steps), "real_time", next_frame)
             debugger.push("Steps: " + str(steps) + "\tTotal time simulated: " + util.seconds_to_clock(steps * time) + "\tTime per step: " + str(time) + " s\tSimulation rate:" + util.round_str(time / real_time.peek_delta()) + "x", "sim_time", next_frame)
 
             #   Pops the debugger until it is empty

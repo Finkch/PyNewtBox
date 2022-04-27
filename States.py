@@ -9,17 +9,22 @@
 #       Clears all items listed before the current index
 #           Would be far more efficient with list representations
 
+import copy
+
 class State:
     def __init__(self):
         self.states = {}
 
     #   Adds the state, indexed by a timestamp
     def add(self, timestamp, actors):
-        self.states[timestamp] = actors
+        self.states[timestamp] = copy.deepcopy(actors)
 
     #   Retrieves a state by a timestamp
     def get(self, timestamp):
-        return self.states[timestamp]
+        try:
+            return self.states[timestamp]
+        except Exception:
+            return self.closest(timestamp)
 
 
     #   The current idea is to extract the keys and sort them
@@ -27,9 +32,11 @@ class State:
     #       If I want to make it even better, then I'll get the closest smaller match
     #       Then, I would simulate one step up to 'now'
     #           I might make it try to "snap" if the delta is small enough
-    #           That way, if I simulate a 0.45 in between steps of 1, I don't have to resimualte even when its 1.05: just snap
+    #           That way, if I simulate a 0.45 in between steps of 1, I don't have to resimulate even when its 1.05: just snap
+    #    For now, just rounds to the nearest integer
     def closest(self, timestamp):
-        pass
+        closest_timestamp = int(round(timestamp))
+        return self.states[closest_timestamp]
 
 
 
