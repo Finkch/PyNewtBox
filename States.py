@@ -9,7 +9,7 @@
 #       Clears all items listed before the current index
 #           Would be far more efficient with list representations
 
-import copy
+import copy # Making deep copies _drastically_ slows things down
 
 class State:
     def __init__(self):
@@ -23,7 +23,7 @@ class State:
     def get(self, timestamp):
         try:
             return self.states[timestamp]
-        except Exception:
+        except:
             return self.closest(timestamp)
 
 
