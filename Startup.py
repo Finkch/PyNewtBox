@@ -16,6 +16,7 @@ import Planets as pl
 import Utility as util
 import Deque
 import States as st
+import Plotter
 
 
 #   Does one step of simulation
@@ -42,6 +43,11 @@ def exist(actors):
     steps = 0
     sim_steps = 0
 
+
+    #   Creates the plotter
+    plotter = Plotter.Plotter()
+
+    #   Starts the stopwatches
     real_time = Deque.Stopwatch(5)
     frame_time = Deque.Stopwatch(5)
     real_time.push_time()
@@ -79,10 +85,13 @@ def exist(actors):
 
             #   Retrieves the current state
             timestamp = round(real_time.since_start(), 1)
-
             current_state = states.get(timestamp)
 
-            #   Pushes everything to the debugger
+
+            #   Draws the current state
+            plotter.draw(current_state)
+
+            #   Pushes the current state to the debugger
             for actor in current_state:
                 debugger.push(actor, "actor", next_frame)
             debugger.push("Time taken on step: " + util.round_str(real_time.peek_delta()) + " s\tTotal elapsed time: " + util.seconds_to_clock(real_time.since_start()) + " s\tFramerate: " + "{:.2f}".format(1 / frame_time.since()) + " fps", "frame_time", next_frame)
@@ -92,6 +101,7 @@ def exist(actors):
             #   Pops the debugger until it is empty
             while not debugger.is_empty():
                 print(debugger.pop())
+
 
             #   Updates the stopwatch in charge of framerate
             frame_time.push_time()
